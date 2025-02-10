@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mitsuhiro's AI Translator</title>
+    <link rel="icon" href="{{ url_for('static', filename='assets/profile-pic.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="title-container">
+            <img src="{{ url_for('static', filename='assets/profile-pic.png') }}" alt="Mitsuhiro's Profile Picture" class="profile-pic">
+            <h1>Mitsuhiro's AI Translator</h1>
+        </div>
+
+        <!-- 翻訳ボックス -->
+        <div class="translation-box">
+            <div class="text-box">
+                <div class="language-selector">
+                    <label for="sourceLanguage">From:</label>
+                    <select id="sourceLanguage">
+                        <option value="Japanese">Japanese</option>
+                        <option value="English">English</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="French">French</option>
+                        <option value="German">German</option>
+                        <option value="Russian">Russian</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Korean">Korean</option>
+                    </select>
+                </div>
+                <h3>Original Text</h3>
+                <textarea id="inputText" placeholder="Enter text to translate"></textarea>
+            </div>
+            <div class="text-box">
+                <div class="language-selector">
+                    <label for="targetLanguage">To:</label>
+                    <select id="targetLanguage">
+                        <option value="English">English</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="French">French</option>
+                        <option value="German">German</option>
+                        <option value="Russian">Russian</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Korean">Korean</option>
+                    </select>
+                </div>
+                <h3>Translated Text</h3>
+                <textarea id="outputText" readonly></textarea>
+            </div>
+        </div>
+
+        <!-- 翻訳ボタン -->
+        <button id="translateButton">Translate</button>
+    </div>
+
+    <!-- JavaScriptファイルの読み込み -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
