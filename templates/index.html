@@ -1,402 +1,60 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>Mitsuhiro's Portfolio</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/profile-pic.png" />
-    <!-- メインCSS -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <!-- デスクトップナビゲーション -->
-    <nav id="desktop-nav">
-      <div class="logo">Mitsuhiro Sengoku</div>
-      <div>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- モバイル向けハンバーガーメニューナビ -->
-    <nav id="hamburger-nav">
-      <div class="logo">Mitsuhiro Sengoku</div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <ul class="menu-links" id="menuLinks">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Skills</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- プロフィールセクション -->
-    <section id="profile">
-      <div class="section__pic-container">
-        <img
-          src="./assets/profile-pic.png"
-          alt="Mitsuhiro Sengoku profile picture"
-        />
-      </div>
-      <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">Mitsuhiro Sengoku</h1>
-        <p class="section__text__p2">
-          Cloud Engineer<br />
-          Support Engineer
-        </p>
-
-        <div class="btn-container">
-          <button
-            class="btn btn-color-1"
-            onclick="location.href='#contact'"
-          >
-            Contact Info
-          </button>
+<html>
+<head>
+    <title>Mitsuhiro's AI Translator</title>
+    <link rel="icon" href="{{ url_for('static', filename='assets/profile-pic.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="title-container">
+            <img src="{{ url_for('static', filename='assets/profile-pic.png') }}" alt="Mitsuhiro's Profile Picture" class="profile-pic">
+            <h1>Mitsuhiro's AI Translator</h1>
         </div>
 
-        <div id="socials-container">
-          <img
-            src="./assets/github.png"
-            alt="My Github profile"
-            class="icon"
-            onclick="window.open('https://github.com/waxwaxwax')"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- Aboutセクション -->
-    <section id="about">
-      <h1 class="title">About Me</h1>
-
-      <div class="section-container">
-        <div class="section__pic-container">
-          <img
-            src="./assets/about-pic-2.png"
-            alt="Profile picture"
-            class="about-pic"
-          />
-        </div>
-        <div class="about-details-container">
-          <!-- 2つのカード状コンテナ -->
-          <div class="about-containers">
-            <div class="details-container">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>Experience</h3>
-              <p>
-                4+ years<br />
-                Technical Support<br /><br />
-                1+ years<br />
-                Cloud Support Engineer
-              </p>
+        <!-- 翻訳ボックス -->
+        <div class="translation-box">
+            <div class="text-box">
+                <div class="language-selector">
+                    <label for="sourceLanguage">From:</label>
+                    <select id="sourceLanguage">
+                        <option value="Japanese">Japanese</option>
+                        <option value="English">English</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="French">French</option>
+                        <option value="German">German</option>
+                        <option value="Russian">Russian</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Korean">Korean</option>
+                    </select>
+                </div>
+                <h3>Original Text</h3>
+                <textarea id="inputText" placeholder="Enter text to translate"></textarea>
             </div>
-            <div class="details-container">
-              <img
-                src="./assets/education.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3>Education</h3>
-              <p>B.Sc. Bachelor's Degree</p>
+            <div class="text-box">
+                <div class="language-selector">
+                    <label for="targetLanguage">To:</label>
+                    <select id="targetLanguage">
+                        <option value="English">English</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="French">French</option>
+                        <option value="German">German</option>
+                        <option value="Russian">Russian</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Korean">Korean</option>
+                    </select>
+                </div>
+                <h3>Translated Text</h3>
+                <textarea id="outputText" readonly></textarea>
             </div>
-          </div>
-
-          <!-- 自己紹介テキスト -->
-          <div class="text-container">
-            <p>
-              私はこれまで、Appleで 3 年間、Salesforceで 1 年間、
-              Microsoft Azureで 1 年間にわたり、テクニカルサポートおよび
-              サポートエンジニアとして勤務してまいりました。<br />
-              IT 分野の学習が好きで、今後も引き続き努力を重ね、
-              成長していきたいと考えています。<br /><br />
-              趣味は、✈️ 旅行 、🏃 ランニング 、🎵 ウクレレ です。<br />
-            </p>
-          </div>
         </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='#experience'"
-      />
-    </section>
 
-    <!-- Skillsセクション -->
-    <section id="experience">
-      <p class="section__text__p1">Explore My</p>
-      <h1 class="title">Skills</h1>
-
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <!-- Programming Card -->
-          <div class="details-container color-container">
-            <h2 class="experience-sub-title">Programming</h2>
-            <div class="article-container">
-              <article>
-                <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-                <div>
-                  <h3>HTML</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-                <div>
-                  <h3>CSS</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-                <div>
-                  <h3>JavaScript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-                <div>
-                  <h3>Python</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-                <div>
-                  <h3>VBA</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-                <div>
-                  <h3>React</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-                <div>
-                  <h3>Bash</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-            </div>
-          </div>
-
-          <!-- Certification Card -->
-          <div class="details-container color-container">
-            <h2 class="experience-sub-title">Certification</h2>
-            <div class="article-container">
-              <article>
-                <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-                <div>
-                  <h3>AZ 104</h3>
-                  <p>Azure Administrator Associate</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-                <div>
-                  <h3>AI 102</h3>
-                  <p>Azure AI Engineer Associate</p>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-                <div>
-                  <h3>基本情報<br>技術者試験</h3>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-                <div>
-                  <h3>TOEIC <br>855 点</h3>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-                <div>
-                  <h3>統計学検定<br> 2 級</h3>
-                </div>
-              </article>
-              <article>
-                <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-                <div>
-                  <h3>簿記検定<br> 2 級</h3>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='#projects'"
-      />
-    </section>
-
-<!-- Projectsセクション -->
-<section id="projects">
-  <p class="section__text__p1">Browse My Recent</p>
-  <h1 class="title">Projects</h1>
-
-  <div class="experience-details-container">
-    <div class="about-containers">
-      <!-- Project One -->
-      <div class="details-container color-container">
-        <div class="article-container">
-          <img
-            src="assets/翻訳.png"
-            alt="Project 1"
-            class="project-img"
-          />
-        </div>
-        <h2 class="experience-sub-title project-title">Project One</h2>
-        <div class="btn-container">
-          <button
-            class="btn btn-color-2 project-btn"
-            onclick="window.open('https://github.com/waxwaxwax/ai-translator')"
-          >
-            Github
-          </button>
-          <button
-            class="btn btn-color-2 project-btn"
-            onclick="window.open('https://ai-translator20250210-fmhbbafdfrc3hdb9.japaneast-01.azurewebsites.net/')"
-          >
-            Live Demo
-          </button>
-        </div>
-      </div>
-
-      <!-- Project Two -->
-      <div class="details-container color-container">
-        <div class="article-container">
-          <img
-            src="./assets/読み上げ.png"
-            alt="Project 2"
-            class="project-img"
-          />
-        </div>
-        <h2 class="experience-sub-title project-title">Project Two</h2>
-        <div class="btn-container">
-          <button
-            class="btn btn-color-2 project-btn"
-            onclick="window.open('https://github.com/waxwaxwax/tts')"
-          >
-            Github
-          </button>
-          <button
-            class="btn btn-color-2 project-btn"
-            onclick="window.open('https://tts-app-excgf0h4bedeh7e2.japaneast-01.azurewebsites.net/')"
-          >
-            Live Demo
-          </button>
-        </div>
-      </div>
-
-      <!-- Project One -->
-      <div class="details-container color-container">
-        <div class="article-container">
-          <img
-            src="./assets/ToDoList.png"
-            alt="Project 3"
-            class="project-img"
-          />
-        </div>
-        <h2 class="experience-sub-title project-title">Project Three</h2>
-        <div class="btn-container">
-          <button
-            class="btn btn-color-2 project-btn"
-            onclick="window.open('https://github.com/waxwaxwax/todolist/tree/main')"
-          >
-            Github
-          </button>
-          <button
-            class="btn btn-color-2 project-btn"
-            onclick="window.open('https://todolist-flask.azurewebsites.net/')"
-          >
-            Live Demo
-          </button>
-        </div>
-      </div>
+        <!-- 翻訳ボタン -->
+        <button id="translateButton">Translate</button>
     </div>
-  </div>
-  <img
-    src="./assets/arrow.png"
-    alt="Arrow icon"
-    class="icon arrow"
-    onclick="location.href='#contact'"
-  />
-</section>
-    <!-- Contactセクション -->
-    <section id="contact">
-      <p class="section__text__p1">Get in Touch</p>
-      <h1 class="title">Contact Me</h1>
 
-      <div class="contact-info-upper-container">
-        <div class="contact-info-container">
-          <img
-            src="./assets/email.png"
-            alt="Email icon"
-            class="icon contact-icon email-icon"
-          />
-          <p>
-            <a href="mailto:sengokumitsuhiro@icloud.com">
-              sengokumitsuhiro@icloud.com
-            </a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- フッター -->
-    <footer>
-      <nav>
-        <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-      <p>&#169; 2025 Mitsuhiro Sengoku. All Rights Reserved.</p>
-    </footer>
-
-    <!-- ハンバーガーメニュー用JS -->
-    <script>
-      function toggleMenu() {
-        const menuLinks = document.getElementById("menuLinks");
-        const hamburgerIcon = document.querySelector(".hamburger-icon");
-
-        menuLinks.classList.toggle("open");
-        hamburgerIcon.classList.toggle("open");
-      }
-    </script>
-  </body>
+    <!-- JavaScriptファイルの読み込み -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
 </html>
